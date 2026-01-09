@@ -1,0 +1,140 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="https://pyscript.net/releases/2024.3.1/core.css" />
+    <script type="module" src="https://pyscript.net/releases/2024.3.1/core.js"></script>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet">
+    
+    <style>
+        body {
+            background-image: url(https://i.pinimg.com/originals/e7/16/55/e7165502b2a1cf61fa81b20e02bad088.gif);
+            background-size: cover;
+            padding: 40px 20px;
+            font-family: 'Courier New', Courier, monospace;
+        }
+
+        .container {
+            max-width: 500px;
+            background: rgba(133, 79, 158, 0.493);
+            padding: 30px;
+            
+            /* --- PIXEL BORDER MAGIC --- */
+            border-style: solid;
+            border-width: 8px;
+            border-image-slice: 2;
+            border-image-width: 2;
+            border-image-outset: 0;
+            border-image-source: url('data:image/svg+xml;utf8,<svg xmlns="http://www.w3.org/2000/svg" width="6" height="6"><path d="M2 0h2v1H2zm2 1h1v1H4zm1 1h1v2H5zm-1 2h1v1H4zm-2 1h2v1H2zm-1-1h1v1H1zm-1-1h1v-2H0zm1-1h1v-1H1z" fill="%23800000"/></svg>');
+            /* --------------------------- */
+            
+            image-rendering: pixelated;
+        }
+
+        h1 {
+            color: #e2bce7;
+            text-align: center;
+            font-size: 22px;
+            text-transform: uppercase;
+            letter-spacing: 2px;
+            margin-bottom: 25px;
+        }
+
+        h3 {
+            color: #33095a;
+            font-size: 18px;
+            margin-top: 20px;
+            border-bottom: 4px solid #000000;
+            display: inline-block;
+        }
+
+        label {
+            font-weight: bold;
+            color: #dbb2e2;
+            margin-top: 12px;
+            display: block;
+            text-transform: uppercase;
+            font-size: 12px;
+        }
+
+        .form-control {
+            border: 4px solid #8a56a8 !important;
+            border-radius: 0px !important; /* Sharp corners for pixel look */
+            background-color: #d7b2df;
+        }
+
+        .btn-primary {
+            background-color: #3e0e53 !important;
+            border: 4px solid #a76fc7 !important;
+            border-radius: 0px !important;
+            font-weight: bold;
+            text-transform: uppercase;
+        }
+
+        .btn-secondary {
+            background-color: #82688a !important;
+            color: #551c66 !important;
+            border: 4px solid #423147 !important;
+            border-radius: 0px !important;
+            font-weight: bold;
+            text-transform: uppercase;
+        }
+
+        #output {
+            margin-top: 25px;
+            padding: 15px;
+            background-color: #d7cbe4;
+            border: 4px dashed #5d4866;
+            color: #5a4366;
+            font-weight: bold;
+            text-align: center;
+            min-height: 60px;
+        }
+    </style>
+    </style>
+    <title>Working With Conditionals</title>
+</head>
+<body>
+    <div class="container">
+    <form onsubmit="return false;"> 
+      <h1>𝑺𝒕𝒖𝒅𝒆𝒏𝒕 𝑮𝒓𝒂𝒅𝒆 𝑪𝒂𝒍𝒄𝒖𝒍𝒂𝒕𝒐𝒓</h1>
+
+      <label for="fname">𝙵𝚒𝚛𝚜𝚝 𝙽𝚊𝚖𝚎:</label>
+      <input type="text" id="fname" name="fname" class="form-control mb-2">
+
+      <label for="lname">𝙻𝚊𝚜𝚝 𝙽𝚊𝚖𝚎:</label>
+      <input type="text" id="lname" name="lname" class="form-control mb-3">
+
+      <h3>𝙴𝚗𝚝𝚎𝚛 𝚈𝚘𝚞𝚛 𝙶𝚛𝚊𝚍𝚎𝚜:</h3>
+
+      <label for="English">𝐸𝓃𝑔𝓁𝒾𝓈𝒽:</label>
+      <input type="number" id="English" name="English" class="form-control mb-2">
+
+      <label for="Filipino">𝐹𝒾𝓁𝒾𝓅𝒾𝓃𝑜:</label>
+      <input type="number" id="Filipino" name="Filipino" class="form-control mb-2">
+
+      <label for="Math">𝑀𝒶𝓉𝒽:</label>
+      <input type="number" id="Math" name="Math" class="form-control mb-2">
+
+      <label for="Science">𝒮𝒸𝒾𝑒𝓃𝒸𝑒:</label>
+      <input type="number" id="Science" name="Science" class="form-control mb-2">
+
+      <label for="Social_Studies">𝒮𝑜𝒸𝒾𝒶𝓁 𝒮𝓉𝓊𝒹𝒾𝑒𝓈:</label>
+      <input type="number" id="Social_Studies" name="Social_Studies" class="form-control mb-2">
+
+      <label for="PE">𝒫𝐸:</label>
+      <input type="number" id="PE" name="PE" class="form-control mb-3">
+
+      <div class="d-flex gap-2">
+        <button type="button" class="btn btn-primary flex-grow-1" py-click="calculate_gwa">ℂ𝕒𝕝𝕔𝕦𝕝𝕒𝕥𝕖 𝔾𝕎𝔸</button>
+        <button type="button" class="btn btn-secondary" py-click="refresh_fields">ℝ𝕖𝕗𝕣𝕖𝕤𝕙</button>
+      </div>
+    </form>
+
+    <div id="output" class="mt-3"></div>
+  </div>
+
+  <py-script src="main.py"></py-script>
+</body>
+</html>
